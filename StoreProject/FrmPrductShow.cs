@@ -139,5 +139,27 @@ namespace StoreProject
             //ให้ไปดึงข้อมูลจาก product_tb มาแสดง
             getAllProductToLV();
         }
+
+        private void btnFrmProductCreate_Click(object sender, EventArgs e)
+        {
+            //เปิดฟอร์ม FrmProductCreate  แบบ dialog/popup
+            //เริ่มสร้าง object (ตัแทน) ของ FrmProductCreate
+            FrmProductCreate frmProductCreate = new FrmProductCreate();
+            //เปิดแบบปกติ
+            //frmProductCreate.Show();
+            //เปิดแบบ dialog
+            frmProductCreate.ShowDialog();
+            getAllProductToLV();
+        }
+
+        private void lvAllProduct_ItemActivate(object sender, EventArgs e)
+        {
+            //เปิดหน้าจอ FrmProductUpDel แบบ Dialog โดยจะส่ง ProId ของรายการที่เลือกไปด้วย
+            FrmProductUpDel frmProductUpDel = new FrmProductUpDel(
+                int.Parse(lvAllProduct.SelectedItems[0].SubItems[1].Text)
+            );
+            frmProductUpDel.ShowDialog();
+            getAllProductToLV();
+        }
     }
 }
